@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+</div>
+<div>
+  <select name="lobOperationName" style="margin-left: 20px" [(ngModel)] = "ngModelOperationName" >
+    <option *ngFor="let operationName of operationNames" value="{{operationName}}">{{operationName}}</option>
+  </select>
+  <br><br>
+  <div>
+    <textarea name="input" [(ngModel)] = "ngModelOperationInput" placeholder="Input" style="height:300px; width:45%; margin: 20px; resize: none;"></textarea>
+    <textarea name="output" [(ngModel)] = "ngModelOperationOutput" placeholder="Output" style="height:300px; width:45%; margin: 20px; resize: none;"></textarea>
+  </div>
+  <button type="button" style="margin-left: 20px" (click)="onRun()" >Run</button>
+</div>
