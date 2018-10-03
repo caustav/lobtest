@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   ngModelOperationName:string;
   ngModelOperationInput:string;
   ngModelOperationOutput:string;
-
+  busy: boolean = false;
   ngOnInit() {
     
     var operations:string[] = [];
@@ -45,13 +45,16 @@ export class AppComponent implements OnInit {
    (err) => { 
               console.log(err);
               _this.ngModelOperationOutput = err;
-            }, () => console.log('Complete'))
+            }, () => {
+              console.log('Complete')
+            })
    };
 
    onRun() {
+     this.busy = true;
      var _this = this;
      var operInfo:string;
-      this.lobBrokerService.runOperation(this.ngModelOperationName, this.ngModelOperationInput).subscribe((resp) => {
+     this.lobBrokerService.runOperation(this.ngModelOperationName, this.ngModelOperationInput).subscribe((resp) => {
         var respText = resp.text();
         var start = respText.indexOf('<s:Envelope');
         var end = respText.indexOf('</s:Envelope>');
@@ -65,6 +68,10 @@ export class AppComponent implements OnInit {
       (err) => {
                   console.log(err);
                   _this.ngModelOperationOutput = err;
-      }, () => console.log('Complete'));
+                  _this.busy = false;
+      }, () => {
+        console.log('Complete');
+        _this.busy = false;
+      });
    }
 }

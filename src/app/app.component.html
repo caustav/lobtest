@@ -4,6 +4,11 @@
     {{ title }}
   </h1>
 </div>
+<div *ngIf="busy; else nooverlay">
+  <div id="overlay">kaustav</div>
+</div>
+<ng-template #nooverlay>
+</ng-template>
 <div>
   <select name="lobOperationName" style="margin-left: 20px" [(ngModel)] = "ngModelOperationName" >
     <option *ngFor="let operationName of operationNames" value="{{operationName}}">{{operationName}}</option>
