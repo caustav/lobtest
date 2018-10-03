@@ -1,0 +1,6 @@
+xml2js dependencies
+
+npm install --save stream timers
+npm i xmlbuilder
+npm i sax
+
